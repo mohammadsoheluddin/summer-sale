@@ -41,12 +41,13 @@
     </style>
 </head>
 
-<body>
+<body class="overflow-y-auto">
     <!-- Banner Section Start-->
     <header class="flex lg:flex-row flex-col-reverse justify-center items-center bg-[#F9F6E2] px-10 lg:gap-14 gap-4">
         <div class="lg:space-y-10 space-y-5 flex flex-col justify-center items-center">
             <h3 class="font-bold">---SALE FEVER---</h3>
-            <h2 class="lg:text-5xl text-3xl font-bold">Purchase TK 200 or <br> above & get <span class="text-[#E527B2]">20%
+            <h2 class="lg:text-5xl text-3xl font-bold">Purchase TK 200 or <br> above & get <span
+                    class="text-[#E527B2]">20%
                     off</span></h2>
             <div class="flex justify-center items-center gap-4">
                 <h3 class="text-xl font-semibold">Use Promo Code</h3>
@@ -63,7 +64,7 @@
     <main class="mt-5 lg:px-[100px]">
         <h1 class="text-4xl font-bold mb-3">Kitchenware</h1>
         <div class="flex gap-3 lg:flex-row flex-col-reverse">
-            <div class="flex flex-col flex-1">
+            <div class="flex flex-col">
                 <!-- Kitchenware Card Container Start-->
                 <div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -271,13 +272,14 @@
 
             <!-- Cart Container Start-->
             <!-- Coupon -->
-            <div class="flex flex-col gap-4">
+            <aside class="flex flex-col gap-4 cart-container">
                 <div class="shadow p-4">
                     <h2 class="text-xl font-semibold">Have a coupon?</h2>
                     <div class="flex py-2">
-                        <input id="coupon-code" class="input input-bordered-2 border-2 input-secondary rounded pl-2" type="text"
-                            placeholder="Coupon Code">
-                        <button disabled id="btn-apply" class="bg-[#E527B2] text-white rounded p-2 -ml-2 font-semibold">Apply</button>
+                        <input id="coupon-code" class="input input-bordered-2 border-2 input-secondary rounded pl-2"
+                            type="text" placeholder="Coupon Code">
+                        <button disabled id="btn-apply"
+                            class="bg-[#E527B2] text-white rounded p-2 -ml-2 font-semibold">Apply</button>
                     </div>
                 </div>
 
@@ -293,31 +295,35 @@
                         <h3 class="text-sm font-medium">Total: <span id="total">00</span> TK</h3>
                     </div>
                     <hr>
-                    <button onclick="my_modal_1.showModal()" id="confirm" disabled class="mt-2 bg-[#E527B2] text-white rounded p-2 -ml-2 font-semibold w-full">Make
+                    <button onclick="my_modal_1.showModal()" id="confirm" disabled
+                        class="mt-2 bg-[#E527B2] text-white rounded p-2 -ml-2 font-semibold w-full">Make
                         Purchase</button>
                 </div>
-            </div>
+            </aside>
             <!-- Cart Container End-->
         </div>
     </main>
     <!-- Main Section End-->
 
 
-<!-- Open the modal using ID.showModal() method -->
-<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
-<dialog id="my_modal_1" class="modal">
-  <div class="modal-box flex flex-col justify-center items-center w-[300px] rounded space-y-2">
-    <img src="./images/congo.png" alt="">
-    <h3 class="font-bold text-lg">Congratulations</h3>
-    <p class="py-4">You Purchase the Product </p>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button id="go-home" class="btn btn-secondary rounded">Go Home</button>
-      </form>
-    </div>
-  </div>
-</dialog>
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+    <dialog id="my_modal_1" class="modal">
+        <div class="modal-box flex flex-col justify-center items-center w-[300px] rounded space-y-2">
+            <img src="./images/congo.png" alt="">
+            <h3 class="font-bold text-lg">Congratulations</h3>
+            <p class="py-4">You Purchase the Product </p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button id="go-home" class="btn btn-secondary rounded">Go Home</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+
+
 
 
     <script src="./summer-sale.js"></script>
