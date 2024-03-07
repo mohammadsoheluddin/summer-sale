@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const productElement = document.createElement('div');
             productElement.classList.add('product-item');
             productElement.innerHTML = `
-                <span>${cartProducts.children.length + 0} . </span>
-                <span>${productName}</span>
-                (<span class="quantity">1</span>)
-                <span class="total-price">${productPrice.toFixed(2)} TK</span>
+                <span class="font-medium">${cartProducts.children.length + 0}</span>.
+                <span class="font-bold">${productName}</span>
+                (Qty-<span class="quantity">1</span>)
+                <span class="total-price font-semibold">${productPrice.toFixed(2)}</span> TK
             `;
             cartProducts.appendChild(productElement);
         }
