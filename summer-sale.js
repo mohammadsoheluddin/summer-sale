@@ -14,8 +14,8 @@ window.addEventListener('DOMContentLoaded', function () {
         if (scrollPosition >= mainOffsetTop) {
             // If so, fix the cart container
             cartContainer.style.position = 'fixed';
-            cartContainer.style.top = '20px';
-            cartContainer.style.right = '10px';
+            cartContainer.style.top = '10px';
+            cartContainer.style.right = '90px';
         } else {
             // Otherwise, revert to the default position
             cartContainer.style.position = 'static';
