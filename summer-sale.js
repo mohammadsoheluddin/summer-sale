@@ -2,26 +2,40 @@ window.addEventListener('DOMContentLoaded', function () {
     const cartContainer = document.querySelector('.cart-container');
     const mainSection = document.querySelector('main');
 
-    // Get the offset top of the main section
-    const mainOffsetTop = mainSection.offsetTop;
+    // Function to handle scroll event
+    function handleScroll() {
+        // Check if the screen size is medium or large
+        if (window.innerWidth >= 768) {
+            // Get the current scroll position
+            const scrollPosition = window.scrollY;
 
-    // Add scroll event listener
-    window.addEventListener('scroll', function () {
-        // Get the current scroll position
-        const scrollPosition = window.scrollY;
+            // Get the offset top of the main section
+            const mainOffsetTop = mainSection.offsetTop;
 
-        // Check if the scroll position is greater than or equal to the main section's offset top
-        if (scrollPosition >= mainOffsetTop) {
-            // If so, fix the cart container
-            cartContainer.style.position = 'fixed';
-            cartContainer.style.top = '10px';
-            cartContainer.style.right = '90px';
+            // Check if the scroll position is greater than or equal to the main section's offset top
+            if (scrollPosition >= mainOffsetTop) {
+                // If so, fix the cart container
+                cartContainer.style.position = 'fixed';
+                cartContainer.style.top = '10px';
+                cartContainer.style.right = '90px';
+            } else {
+                // Otherwise, revert to the default position
+                cartContainer.style.position = 'static';
+            }
         } else {
-            // Otherwise, revert to the default position
+            // For small screens, reset cart container position
             cartContainer.style.position = 'static';
         }
-    });
+    }
+
+    // Attach the scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Ensure cart container position is correct on page load
+    handleScroll();
 });
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const closeModalBtn = document.getElementById('go-home');
