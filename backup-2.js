@@ -1,75 +1,67 @@
-window.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const cartContainer = document.querySelector('.cart-container');
     const mainSection = document.querySelector('main');
     const flexibleDiv = document.querySelector('.flex-1');
+    const closeModalBtn = document.getElementById('go-home');
 
-
-    // Function to handle scroll event
+    // Handle scroll event
     function handleScroll() {
-        // Check if the screen size is medium or large
         if (window.innerWidth >= 768) {
-            // Get the current scroll position
             const scrollPosition = window.scrollY;
-
-            // Get the offset top of the main section
             const mainOffsetTop = mainSection.offsetTop;
-            
 
-            // Check if the scroll position is greater than or equal to the main section's offset top
             if (scrollPosition >= mainOffsetTop) {
-                // If so, fix the cart container
                 cartContainer.style.position = 'fixed';
                 cartContainer.style.top = '10px';
                 cartContainer.style.right = '90px';
                 flexibleDiv.classList.remove('flex-1');
-                
-
             } else {
-                // Otherwise, revert to the default position
                 cartContainer.style.position = 'static';
+                flexibleDiv.classList.add('flex-1');
             }
         } else {
-            // For small screens, reset cart container position
             cartContainer.style.position = 'static';
+            flexibleDiv.classList.add('flex-1');
         }
     }
 
-    // Attach the scroll event listener
+    // Attach scroll event listener
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Ensure cart container position is correct on page load
 
-    // Ensure cart container position is correct on page load
-    handleScroll();
-});
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const closeModalBtn = document.getElementById('go-home');
-
+    // Handle "Go Home" button click
     closeModalBtn.addEventListener('click', function () {
         window.location.reload(); // Refresh the page
     });
+
+    // Handle product button clicks using event delegation
+    document.addEventListener('click', function (event) {
+        const target = event.target;
+        if (target && target.id.startsWith('btn-add-')) {
+            const productId = 'product-card-' + target.id.slice(8);
+            productPriceCalculation(productId);
+        }
+    });
 });
 
+// Function to retrieve price from DOM
 function getPrice(priceID) {
     const priceField = document.getElementById(priceID);
     const price = parseFloat(priceField.innerText);
     return price;
 }
 
-function productPriceCalculation(productId){
+// Function to calculate product price
+function productPriceCalculation(productId) {
     const productPrice = getPrice(productId);
     const productOldTotalPrice = getPrice('total-price');
     const productNewTotalPrice = productPrice + productOldTotalPrice;
+
     document.getElementById('total-price').innerText = productNewTotalPrice.toFixed(2);
     document.getElementById('total').innerText = productNewTotalPrice.toFixed(2);
 
     const confirmBtn = document.getElementById('confirm');
-    if(productNewTotalPrice > 0){
-        confirmBtn.disabled = false;
-    } else{
-        confirmBtn.disabled = true;
-    }
+    confirmBtn.disabled = productNewTotalPrice <= 0;
 
     const applyButton = document.getElementById('btn-apply');
     const couponCode = document.getElementById('coupon-code');
@@ -88,6 +80,7 @@ function productPriceCalculation(productId){
         applyButton.disabled = true;
     }
 }
+
 
 document.getElementById('btn-add-1').addEventListener('click', function () {
     productPriceCalculation('product-card-1')
